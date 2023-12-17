@@ -1,4 +1,4 @@
-import { Input } from "@chakra-ui/react";
+import { Flex, FormControl, FormHelperText, Input } from "@chakra-ui/react";
 import { ByteConversionMethods } from "src/types";
 
 const ByteInput = ({
@@ -12,18 +12,11 @@ const ByteInput = ({
   setInputValue: (value: ByteConversionMethods) => void;
   onChange: (value: ByteConversionMethods, methodName: string) => void;
 }) => {
-  const placeholder = () => {
-    if (selectedTool === ByteConversionMethods.BINARY) {
-      return "Enter a hex string, e.g. 0x1234";
-    }
-
-    return "Enter a value";
-  };
   return (
     <Input
       type="text"
       value={value}
-      placeholder={placeholder()}
+      placeholder="0x....."
       onChange={(e) => {
         const inputValue = e.target.value as ByteConversionMethods;
         setInputValue(inputValue);

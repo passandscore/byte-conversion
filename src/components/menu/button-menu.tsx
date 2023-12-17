@@ -7,21 +7,12 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { ByteConversionMethods } from "src/types";
 
 const ButtonMenu = ({
-  setInputValue,
-  setInputResult,
-  setSelectedTool,
-  selectRef,
-  textAreaRef,
+  clearResults,
   result,
 }: {
-  setInputValue: (value: string) => void;
-  setInputResult: (value: string) => void;
-  setSelectedTool: (value: ByteConversionMethods) => void;
-  selectRef: React.MutableRefObject<HTMLSelectElement | null>;
-  textAreaRef: React.MutableRefObject<HTMLTextAreaElement | null>;
+  clearResults: () => void;
   result: string;
 }) => {
   const toast = useToast();
@@ -41,17 +32,7 @@ const ButtonMenu = ({
         Actions
       </MenuButton>
       <MenuList>
-        <MenuItem
-          onClick={() => {
-            setInputValue("");
-            setInputResult("");
-            setSelectedTool(ByteConversionMethods.NONE);
-            selectRef.current!.value = ByteConversionMethods.NONE;
-            textAreaRef.current!.value = "";
-          }}
-        >
-          Reset
-        </MenuItem>
+        <MenuItem onClick={clearResults}>Reset</MenuItem>
         <MenuItem
           onClick={() => {
             navigator.clipboard.writeText(result);

@@ -8,28 +8,21 @@ import {
 import ButtonMenu from "../menu/button-menu";
 import { ResetButton } from "../buttons/reset";
 import { CopyButton } from "../buttons/copy";
-import { ByteConversionMethods } from "src/types";
 
 const ConvertedResults = ({
   returnType,
   result,
   isMobileWidth,
   inputValueError,
-  selectRef,
   textAreaRef,
-  setInputValue,
-  setInputResult,
-  setSelectedTool,
+  clearResults,
 }: {
   returnType: string;
   result: string;
-  selectRef: React.MutableRefObject<HTMLSelectElement | null>;
   isMobileWidth: boolean;
   inputValueError: boolean;
   textAreaRef: React.MutableRefObject<HTMLTextAreaElement | null>;
-  setInputValue: (value: string) => void;
-  setInputResult: (value: string) => void;
-  setSelectedTool: (value: ByteConversionMethods) => void;
+  clearResults: () => void;
 }) => {
   return (
     <Box>
@@ -45,25 +38,12 @@ const ConvertedResults = ({
       </FormControl>
       <Flex justify="flex-end" mt={3}>
         {isMobileWidth ? (
-          <ButtonMenu
-            setInputValue={setInputValue}
-            setInputResult={setInputResult}
-            setSelectedTool={setSelectedTool}
-            selectRef={selectRef}
-            textAreaRef={textAreaRef}
-            result={result}
-          />
+          <ButtonMenu clearResults={clearResults} result={result} />
         ) : (
           <Flex>
             {result && (
               <Flex>
-                <ResetButton
-                  setInputValue={setInputValue}
-                  setInputResult={setInputResult}
-                  setSelectedTool={setSelectedTool}
-                  selectRef={selectRef}
-                  textAreaRef={textAreaRef}
-                />
+                <ResetButton clearResults={clearResults} />
                 <CopyButton result={result} />
               </Flex>
             )}

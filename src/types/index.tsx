@@ -12,4 +12,6 @@ export enum ByteConversionMethods {
   BINARY = "binary",
   BASE64 = "base64",
   UTF8 = "UTF-8",
+  DECIMAL = "decimal",
+  ARRAY = "array",
 }
